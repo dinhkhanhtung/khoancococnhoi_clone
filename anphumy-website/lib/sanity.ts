@@ -30,11 +30,26 @@ export function urlFor(source: SanityImageSource) {
 }
 
 export async function getSiteSettings() {
+  if (!projectId || projectId === 'abcd1234') {
+    return {
+      companyName: 'CÔNG TY TNHH XÂY DỰNG THƯƠNG MẠI DỊCH VỤ AN PHÚ MỸ',
+      address: '20/161S Phan Huy Ích – Phường 12 – Q.Gò Vấp – TP.HCM',
+      phone: '0903 961 168',
+      hotline: '0903 961 168',
+      email: 'nenmongapm@gmail.com',
+      workingHours: 'Thứ 2 - Thứ 7: 7:00 - 17:30',
+      seoTitle: 'Thi Công Khoan Cọc Nhồi Toàn Quốc - An Phú Mỹ',
+      seoDescription: 'CÔNG TY TNHH XD TM AN PHÚ MỸ - Khoan cọc nhồi nhà phố, thi công dự án với giá cả hợp lý. Đảm bảo làm đúng cam kết.',
+    };
+  }
   const query = `*[_type == "siteSettings"][0]`;
   return client.fetch(query);
 }
 
 export async function getPosts(limit = 10) {
+  if (!projectId || projectId === 'abcd1234') {
+    return [];
+  }
   const query = `*[_type == "post" && published == true] | order(publishedAt desc) [0...${limit}] {
     _id,
     title,
@@ -50,6 +65,9 @@ export async function getPosts(limit = 10) {
 }
 
 export async function getPostBySlug(slug: string) {
+  if (!projectId || projectId === 'abcd1234') {
+    return null;
+  }
   const query = `*[_type == "post" && slug.current == $slug && published == true][0] {
     _id,
     title,
@@ -69,6 +87,9 @@ export async function getPostBySlug(slug: string) {
 }
 
 export async function getServices(limit?: number) {
+  if (!projectId || projectId === 'abcd1234') {
+    return [];
+  }
   const limitClause = limit ? `[0...${limit}]` : '';
   const query = `*[_type == "service" && published == true] | order(order asc) ${limitClause} {
     _id,
@@ -86,6 +107,9 @@ export async function getServices(limit?: number) {
 }
 
 export async function getServiceBySlug(slug: string) {
+  if (!projectId || projectId === 'abcd1234') {
+    return null;
+  }
   const query = `*[_type == "service" && slug.current == $slug && published == true][0] {
     _id,
     title,
@@ -108,6 +132,9 @@ export async function getServiceBySlug(slug: string) {
 }
 
 export async function getProjects(limit?: number) {
+  if (!projectId || projectId === 'abcd1234') {
+    return [];
+  }
   const limitClause = limit ? `[0...${limit}]` : '';
   const query = `*[_type == "project" && published == true] | order(completionDate desc) ${limitClause} {
     _id,
@@ -123,6 +150,9 @@ export async function getProjects(limit?: number) {
 }
 
 export async function getLocations() {
+  if (!projectId || projectId === 'abcd1234') {
+    return [];
+  }
   const query = `*[_type == "location"] | order(order asc) {
     _id,
     name,
@@ -135,6 +165,9 @@ export async function getLocations() {
 }
 
 export async function getPageBySlug(slug: string) {
+  if (!projectId || projectId === 'abcd1234') {
+    return null;
+  }
   const query = `*[_type == "page" && slug.current == $slug && published == true][0]`;
   return client.fetch(query, { slug });
 }
