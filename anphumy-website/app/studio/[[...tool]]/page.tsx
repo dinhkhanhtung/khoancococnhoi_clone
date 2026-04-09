@@ -1,6 +1,7 @@
 import { Studio } from './Studio';
+import { metadata } from 'next-sanity/studio';
 
-export { metadata } from 'next-sanity/studio/metadata';
+export { metadata };
 
 export default function StudioPage() {
   return <Studio />;
