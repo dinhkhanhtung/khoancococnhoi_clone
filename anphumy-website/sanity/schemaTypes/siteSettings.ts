@@ -4,7 +4,6 @@ export default defineType({
   name: 'siteSettings',
   title: 'Site Settings',
   type: 'document',
-  __experimental_actions: { update: true, create: true, delete: false },
   groups: [
     { name: 'general', title: 'General' },
     { name: 'seo', title: 'SEO' },
